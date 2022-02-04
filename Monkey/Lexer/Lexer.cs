@@ -13,7 +13,6 @@ public class Lexer
 
     public Lexer(string input)
     {
-        //we don't care about whitespace so remove it before setting the input
         _input = input.ToCharArray();
 
         ReadChar();
