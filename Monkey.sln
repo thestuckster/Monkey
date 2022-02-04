@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkey", "Monkey\Monkey.csproj", "{E2FF2B2B-167A-44E1-95DF-BF25800B201D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkey.Test", "Monkey.Test\Monkey.Test.csproj", "{C7112D10-EE73-4D01-9090-424C9AC491BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2FF2B2B-167A-44E1-95DF-BF25800B201D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FF2B2B-167A-44E1-95DF-BF25800B201D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FF2B2B-167A-44E1-95DF-BF25800B201D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FF2B2B-167A-44E1-95DF-BF25800B201D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7112D10-EE73-4D01-9090-424C9AC491BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7112D10-EE73-4D01-9090-424C9AC491BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7112D10-EE73-4D01-9090-424C9AC491BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7112D10-EE73-4D01-9090-424C9AC491BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
