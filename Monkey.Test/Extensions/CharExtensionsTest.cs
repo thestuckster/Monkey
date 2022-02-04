@@ -15,10 +15,11 @@ public class CharExtensionsTest
         c.IsAlphaOrUnderscore().Should().BeTrue();
     }
 
-    [Test]
-    public void Should_Return_False()
+    [TestCase('8')]
+    [TestCase(';')]
+    [TestCase('~')]
+    public void Should_Return_False(char c)
     {
-        var c = '8';
         c.IsAlphaOrUnderscore().Should().BeFalse();
     }
     
