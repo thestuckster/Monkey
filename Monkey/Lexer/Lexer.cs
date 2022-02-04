@@ -15,14 +15,14 @@ public class Lexer
     {
         //we don't care about whitespace so remove it before setting the input
         _input = input.ToCharArray();
-        
+
         ReadChar();
     }
 
     public Token NextToken()
     {
         EatWhitespace();
-        
+
         var token = _ch switch
         {
             //ops
@@ -46,7 +46,7 @@ public class Lexer
         return token;
     }
 
-    private  void EatWhitespace()
+    private void EatWhitespace()
     {
         var isWhitespace = _ch is ' ' or '\t' or '\n' or '\r';
         while (isWhitespace)
@@ -55,7 +55,7 @@ public class Lexer
             isWhitespace = _ch is ' ' or '\t' or '\n' or '\r';
         }
     }
-    
+
     /// <summary>
     /// Gives us the next char and advance our position in the input.
     /// </summary>
@@ -75,6 +75,12 @@ public class Lexer
             return new Token(type, literal);
         }
 
+        if (char.IsDigit(_ch))
+        {
+            var literal = ReadNumber();
+            return new Token(TokenTypes.Literals.Int, literal);
+        }
+
         return new Token(TokenTypes.Illegal, _ch.ToString());
     }
 
@@ -86,12 +92,23 @@ public class Lexer
     {
         var position = _position;
         while (_ch.IsAlphaOrUnderscore())
-        {
             ReadChar();
-        }
 
-        var range = new Range(position, _position);
-        var slice = _input.Take(range).ToArray();
+        var slice = _input.Take(new Range(position, _position)).ToArray();
+        return new string(slice);
+    }
+
+    /// <summary>
+    /// If the char is a digit, lets read the whole number
+    /// </summary>
+    /// <returns>a string representation of a whole number</returns>
+    private string ReadNumber()
+    {
+        var position = _position;
+        while (Char.IsDigit(_ch))
+            ReadChar();
+
+        var slice = _input.Take(new Range(position, _position)).ToArray();
         return new string(slice);
     }
 }
