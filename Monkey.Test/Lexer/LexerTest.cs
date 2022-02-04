@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -39,7 +37,8 @@ public class LexerTest
     public void Should_Lex_Small_Program()
     {
         //TODO: just read this from a file.
-        var input = @"let five = 5;
+        var input = @"
+        let five = 5;
         let ten = 10;
 
         let add = fn(x,y) {

@@ -21,6 +21,8 @@ public class Lexer
 
     public Token NextToken()
     {
+        EatWhitespace();
+        
         var token = _ch switch
         {
             //ops
@@ -44,6 +46,16 @@ public class Lexer
         return token;
     }
 
+    private  void EatWhitespace()
+    {
+        var isWhitespace = _ch is ' ' or '\t' or '\n' or '\r';
+        while (isWhitespace)
+        {
+            ReadChar();
+            isWhitespace = _ch is ' ' or '\t' or '\n' or '\r';
+        }
+    }
+    
     /// <summary>
     /// Gives us the next char and advance our position in the input.
     /// </summary>
