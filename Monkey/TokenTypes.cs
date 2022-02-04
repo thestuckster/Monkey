@@ -1,10 +1,27 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace Monkey;
 
 public static class TokenTypes
 {
     public const string Illegal = "ILLEGAL";
     public const string Eof = "EOF";
+    
+    private static Dictionary<string, string?> _keywords = new()
+    {
+        {"fn", Keywords.Function},
+        {"let", Keywords.Let}
+    };
 
+    /// <summary>
+    /// Determine if an identifier is a keyword or not.
+    /// </summary>
+    /// <param name="word"></param>
+    /// <returns>Returns a keyword type if word has a keyword mapping else returns IDENT type</returns>
+    public static string LookUpIdentType(string word) =>
+    _keywords.TryGetValue(word, out string value)? value : Literals.Ident;
+    
+    
     /// <summary>
     /// Identifiers and literal token type constants
     /// </summary>
