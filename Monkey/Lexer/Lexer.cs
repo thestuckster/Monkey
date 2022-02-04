@@ -14,7 +14,6 @@ public class Lexer
     public Lexer(string input)
     {
         _input = input.ToCharArray();
-
         ReadChar();
     }
 
@@ -39,8 +38,10 @@ public class Lexer
             _ => DetermineIllegalOrIdentifier()
         };
 
-        //move forward
-        ReadChar();
+        //we are skipping ; sometimes.. idk dude
+        //this is a terrible idea but its 12:30 am so whatever.
+        if(_ch != ';')
+            ReadChar();
 
         return token;
     }

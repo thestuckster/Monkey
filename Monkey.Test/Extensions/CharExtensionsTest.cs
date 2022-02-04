@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using Monkey.Extensions;
 using NUnit.Framework;
@@ -21,6 +22,12 @@ public class CharExtensionsTest
     public void Should_Return_False(char c)
     {
         c.IsAlphaOrUnderscore().Should().BeFalse();
+    }
+
+    [Test]
+    public void Scratch()
+    {
+        Char.IsDigit(';').Should().BeFalse();
     }
     
 }
