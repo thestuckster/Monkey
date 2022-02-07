@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Monkey.Extensions;
 
 namespace Monkey;
@@ -6,10 +5,10 @@ namespace Monkey;
 public class Lexer
 {
     private readonly char[] _input;
+    private char _ch; //current char under examination
 
     private int _position; //the current char position
     private int _readPosition; //the next char position
-    private char _ch; //current char under examination
 
     public Lexer(string input)
     {
@@ -38,10 +37,7 @@ public class Lexer
             _ => DetermineIllegalOrIdentifier()
         };
 
-        //we are skipping ; sometimes.. idk dude
-        //this is a terrible idea but its 12:30 am so whatever.
-        if(_ch != ';')
-            ReadChar();
+        ReadChar();
 
         return token;
     }

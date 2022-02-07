@@ -7,7 +7,7 @@ namespace Monkey.Test.Lexer;
 public class LexerTest
 {
     private const string SmallProgramFilePath = "small_program.txt";
-    
+
     [Test]
     public void Should_Lex_Simple_Tokens()
     {
@@ -24,6 +24,25 @@ public class LexerTest
         };
 
         //for some reason this has to be fully qualified...
+        var lexer = new Monkey.Lexer(input);
+        foreach (var expectedToken in expected)
+        {
+            var token = lexer.NextToken();
+            token.Type.Should().Be(expectedToken.Type);
+            token.Literal.Should().Be(expectedToken.Literal);
+        }
+    }
+
+    [Test]
+    public void Should_Lex_SemiColon_After_Literal()
+    {
+        var input = "4;";
+        var expected = new List<Token>
+        {
+            new(TokenTypes.Literals.Int, "4"),
+            new(TokenTypes.Delimiters.Semicolon, ";")
+        };
+
         var lexer = new Monkey.Lexer(input);
         foreach (var expectedToken in expected)
         {
@@ -87,7 +106,7 @@ public class LexerTest
             new(TokenTypes.Delimiters.Semicolon, ";"),
             new(TokenTypes.Eof, ""),
         };
-        
+
         var lexer = new Monkey.Lexer(input);
         foreach (var expectedToken in expected)
         {
@@ -95,6 +114,5 @@ public class LexerTest
             token.Type.Should().Be(expectedToken.Type);
             token.Literal.Should().Be(expectedToken.Literal);
         }
-
     }
 }
