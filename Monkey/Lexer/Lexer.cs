@@ -52,9 +52,6 @@ public class Lexer
         }
     }
 
-    /// <summary>
-    /// Gives us the next char and advance our position in the input.
-    /// </summary>
     private void ReadChar()
     {
         _ch = _readPosition >= _input.Length ? '\0' : _input[_readPosition];
@@ -105,6 +102,13 @@ public class Lexer
             ReadChar();
 
         var slice = _input.Take(new Range(position, _position)).ToArray();
-        return new string(slice);
+        var literal = new string(slice);
+
+        //step back one so we can tokenize ;  
+        _position -= 1;
+        _readPosition -= 1;
+        _ch = _input[_position];
+
+        return literal;
     }
 }
