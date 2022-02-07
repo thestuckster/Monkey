@@ -125,15 +125,12 @@ public class LexerTest
             new(TokenTypes.Eof, ""),
         };
 
+        var lexer = new Monkey.Lexer(input);
         for (var i = 0; i < expected.Count; i++)
         {
-        }
-
-        var lexer = new Monkey.Lexer(input);
-        foreach (var expectedToken in expected)
-        {
+            var expectedToken = expected[i];
             var token = lexer.NextToken();
-            token.Type.Should().Be(expectedToken.Type);
+            token.Type.Should().Be(expectedToken.Type, $"TokenType is different than what was expected at index [{i}]");
             token.Literal.Should().Be(expectedToken.Literal);
         }
     }
