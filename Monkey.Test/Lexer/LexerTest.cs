@@ -6,8 +6,6 @@ namespace Monkey.Test.Lexer;
 
 public class LexerTest
 {
-    private const string SmallProgramFilePath = "small_program.txt";
-
     [Test]
     public void Should_Lex_Simple_Tokens()
     {
@@ -24,6 +22,26 @@ public class LexerTest
         };
 
         //for some reason this has to be fully qualified...
+        var lexer = new Monkey.Lexer(input);
+        foreach (var expectedToken in expected)
+        {
+            var token = lexer.NextToken();
+            token.Type.Should().Be(expectedToken.Type);
+            token.Literal.Should().Be(expectedToken.Literal);
+        }
+    }
+
+    [Test]
+    public void Should_Lex_Parentheses()
+    {
+        var input = @"(3)";
+        var expected = new List<Token>
+        {
+            new(TokenTypes.Delimiters.LParen, "("),
+            new(TokenTypes.Literals.Int, "3"),
+            new(TokenTypes.Delimiters.RParen, ")")
+        };
+
         var lexer = new Monkey.Lexer(input);
         foreach (var expectedToken in expected)
         {
@@ -87,7 +105,7 @@ public class LexerTest
             new(TokenTypes.Delimiters.Comma, ","),
             new(TokenTypes.Literals.Ident, "y"),
             new(TokenTypes.Delimiters.RParen, ")"),
-            new(TokenTypes.Delimiters.LParen, "("),
+            new(TokenTypes.Delimiters.LBrace, "{"),
             new(TokenTypes.Literals.Ident, "x"),
             new(TokenTypes.Operators.Plus, "+"),
             new(TokenTypes.Literals.Ident, "y"),
@@ -106,6 +124,10 @@ public class LexerTest
             new(TokenTypes.Delimiters.Semicolon, ";"),
             new(TokenTypes.Eof, ""),
         };
+
+        for (var i = 0; i < expected.Count; i++)
+        {
+        }
 
         var lexer = new Monkey.Lexer(input);
         foreach (var expectedToken in expected)
