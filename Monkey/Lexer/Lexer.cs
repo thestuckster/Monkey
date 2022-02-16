@@ -89,9 +89,9 @@ public class Lexer
 
         var slice = _input.Take(new Range(position, _position)).ToArray();
         var literal = new string(slice);
-        
+
         StepBack();
-        
+
         return literal;
     }
 
@@ -109,7 +109,7 @@ public class Lexer
         var literal = new string(slice);
 
         StepBack();
-        
+
         return literal;
     }
 
@@ -122,5 +122,4 @@ public class Lexer
         _readPosition -= 1;
         _ch = _input[_position];
     }
-    
 }
