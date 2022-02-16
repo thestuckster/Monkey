@@ -65,6 +65,9 @@ public class Lexer
         _position = _readPosition;
         _readPosition += 1;
     }
+    
+    //Similar to ReadChar above but doesn't move us forward in the input.
+    private char Peek() => _readPosition >= _input.Length ? '\0' : _input[_readPosition];
 
     private Token DetermineComplexToken()
     {
@@ -84,6 +87,16 @@ public class Lexer
         return new Token(TokenTypes.Illegal, _ch.ToString());
     }
 
+    private Token DetermineAssignOrEq()
+    {
+        return null;
+    }
+
+    private Token DetermineBangOrNotEq()
+    {
+        return null;
+    }
+    
     /// <summary>
     /// If the char is alpha or _ lets read the whole word
     /// </summary>
@@ -130,5 +143,5 @@ public class Lexer
         _ch = _input[_position];
     }
 
-    private char Peek() => _readPosition >= _input.Length ? '\0' : _input[_readPosition];
+    
 }
