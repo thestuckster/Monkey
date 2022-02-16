@@ -16,7 +16,7 @@ You can build the monkey project by running the command
 dotnet build --configuration Release 
 ```
 
-Which will generator an output that you can run with:
+Which will generate an output that you can run with:
 ```bash
 ./Monkey/bin/Release/net6.0/Monkey 
 ```
