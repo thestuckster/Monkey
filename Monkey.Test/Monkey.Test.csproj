@@ -23,6 +23,9 @@
       <None Update="Programs\simple.monk">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Programs\logicalOperations.monk">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

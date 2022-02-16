@@ -3,8 +3,10 @@ namespace Monkey;
 public static class TokenTypes
 {
     public const string Illegal = "ILLEGAL";
-    public const string Eof = "EOF"; //C# doesn't seem to read or care about an EOF character... leaving it here just in case its useful later
-    
+
+    public const string
+        Eof = "EOF"; //C# doesn't seem to read or care about an EOF character... leaving it here just in case its useful later
+
     private static Dictionary<string, string?> _keywords = new()
     {
         {"fn", Keywords.Function},
@@ -17,9 +19,9 @@ public static class TokenTypes
     /// <param name="word"></param>
     /// <returns>Returns a keyword type if word has a keyword mapping else returns IDENT type</returns>
     public static string LookUpIdentType(string word) =>
-    _keywords.TryGetValue(word, out string value)? value : Literals.Ident;
-    
-    
+        _keywords.TryGetValue(word, out string value) ? value : Literals.Ident;
+
+
     /// <summary>
     /// Identifiers and literal token type constants
     /// </summary>
@@ -36,6 +38,16 @@ public static class TokenTypes
     {
         public const string Assign = "=";
         public const string Plus = "+";
+        public const string Minus = "-";
+        public const string Slash = "/";
+        public const string Asterisk = "*";
+
+        public const string Bang = "!";
+        public const string Lt = "<";
+        public const string Gt = ">";
+
+        public const string Eq = "==";
+        public const string NotEq = "!=";
     }
 
     /// <summary>
@@ -60,5 +72,12 @@ public static class TokenTypes
     {
         public const string Function = "FUNCTION";
         public const string Let = "LET";
+        public const string Return = "return";
+        
+        public const string If = "if";
+        public const string Else = "else";
+        
+        public const string True = "true";
+        public const string False = "false";
     }
 }
