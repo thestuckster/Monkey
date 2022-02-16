@@ -25,6 +25,13 @@ public class Lexer
             //ops
             '=' => new Token(TokenTypes.Operators.Assign, _ch.ToString()),
             '+' => new Token(TokenTypes.Operators.Plus, _ch.ToString()),
+            '-' => new Token(TokenTypes.Operators.Minus, _ch.ToString()),
+            '*' => new Token(TokenTypes.Operators.Asterisk, _ch.ToString()),
+            '/' => new Token(TokenTypes.Operators.Slash, _ch.ToString()),
+            
+            '!' => new Token(TokenTypes.Operators.Bang, _ch.ToString()),
+            '<' => new Token(TokenTypes.Operators.Lt, _ch.ToString()),
+            '>' => new Token(TokenTypes.Operators.Gt, _ch.ToString()),
 
             //delims
             ';' => new Token(TokenTypes.Delimiters.Semicolon, _ch.ToString()),
@@ -34,7 +41,7 @@ public class Lexer
             '}' => new Token(TokenTypes.Delimiters.RBrace, _ch.ToString()),
             ',' => new Token(TokenTypes.Delimiters.Comma, _ch.ToString()),
 
-            _ => DetermineIllegalOrIdentifier()
+            _ => DetermineComplexToken()
         };
 
         ReadChar();
@@ -59,7 +66,7 @@ public class Lexer
         _readPosition += 1;
     }
 
-    private Token DetermineIllegalOrIdentifier()
+    private Token DetermineComplexToken()
     {
         if (_ch.IsAlphaOrUnderscore())
         {
