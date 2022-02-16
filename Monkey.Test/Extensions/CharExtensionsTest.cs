@@ -22,12 +22,5 @@ public class CharExtensionsTest
     public void Should_Return_False(char c)
     {
         c.IsAlphaOrUnderscore().Should().BeFalse();
-    }
-
-    [Test]
-    public void Scratch()
-    {
-        Char.IsDigit(';').Should().BeFalse();
-    }
-    
+    }    
 }
