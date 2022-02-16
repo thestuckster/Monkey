@@ -80,7 +80,7 @@ public class LexerTest
 
         let add = fn(x,y) {
             x + y;
-        }
+        };
 
         let result = add(five, ten);";
 

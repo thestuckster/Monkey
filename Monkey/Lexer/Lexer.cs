@@ -88,7 +88,11 @@ public class Lexer
             ReadChar();
 
         var slice = _input.Take(new Range(position, _position)).ToArray();
-        return new string(slice);
+        var literal = new string(slice);
+        
+        StepBack();
+        
+        return literal;
     }
 
     /// <summary>
@@ -104,11 +108,19 @@ public class Lexer
         var slice = _input.Take(new Range(position, _position)).ToArray();
         var literal = new string(slice);
 
-        //step back one so we can tokenize ;  
+        StepBack();
+        
+        return literal;
+    }
+
+    /// <summary>
+    /// Step back in time. Used after reading a 2+ character long identifier.
+    /// </summary>
+    private void StepBack()
+    {
         _position -= 1;
         _readPosition -= 1;
         _ch = _input[_position];
-
-        return literal;
     }
+    
 }
