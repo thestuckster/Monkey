@@ -23,13 +23,13 @@ public class Lexer
         var token = _ch switch
         {
             //ops
-            '=' => new Token(TokenTypes.Operators.Assign, _ch.ToString()),
+            '=' => DetermineAssignOrEq(),
             '+' => new Token(TokenTypes.Operators.Plus, _ch.ToString()),
             '-' => new Token(TokenTypes.Operators.Minus, _ch.ToString()),
             '*' => new Token(TokenTypes.Operators.Asterisk, _ch.ToString()),
             '/' => new Token(TokenTypes.Operators.Slash, _ch.ToString()),
 
-            '!' => new Token(TokenTypes.Operators.Bang, _ch.ToString()),
+            '!' => DetermineBangOrNotEq(),
             '<' => new Token(TokenTypes.Operators.Lt, _ch.ToString()),
             '>' => new Token(TokenTypes.Operators.Gt, _ch.ToString()),
 
@@ -89,12 +89,30 @@ public class Lexer
 
     private Token DetermineAssignOrEq()
     {
-        return null;
+        var next = Peek();
+        if (next is '=')
+        {
+            var literal = _ch.ToString() + next;
+            ReadChar();
+
+            return new Token(TokenTypes.Operators.Eq, literal);
+        }
+
+        return new Token(TokenTypes.Operators.Assign, _ch.ToString());
     }
 
     private Token DetermineBangOrNotEq()
     {
-        return null;
+        var next = Peek();
+        if (next is '=')
+        {
+            var literal = _ch.ToString() + next;
+            ReadChar();
+
+            return new Token(TokenTypes.Operators.NotEq, literal);
+        }
+
+        return new Token(TokenTypes.Operators.Bang, _ch.ToString());
     }
     
     /// <summary>
