@@ -49,6 +49,8 @@ public class Lexer
         return token;
     }
 
+    public bool HasNextToken() => Peek() is not '\0';
+
     private void EatWhitespace()
     {
         var isWhitespace = _ch is ' ' or '\t' or '\n' or '\r';

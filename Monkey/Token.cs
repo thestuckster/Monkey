@@ -1,5 +1,6 @@
 namespace Monkey;
 
+[Serializable]
 public class Token
 {
     //Should be a value from TokenTypes constants.
@@ -12,4 +13,6 @@ public class Token
         Type = type;
         Literal = literal;
     }
+
+    public override string ToString() => $"[Type [{Type}] - Literal [{Literal}]]";
 }

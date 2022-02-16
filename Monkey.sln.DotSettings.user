@@ -9,6 +9,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::C7112D10-EE73-4D01-9090-424C9AC491BF::net6.0::Monkey.Test.Lexer.LexerTest.Should_Lex_Small_Program&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::C7112D10-EE73-4D01-9090-424C9AC491BF::net6.0::Monkey.Test.Lexer.LexerTest.Should_Lex_Simple_Program_File&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::C7112D10-EE73-4D01-9090-424C9AC491BF::net6.0::Monkey.Test.Lexer.LexerTest.Should_Lex_Logical_Operations_File&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
