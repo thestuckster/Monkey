@@ -28,7 +28,7 @@ public class Lexer
             '-' => new Token(TokenTypes.Operators.Minus, _ch.ToString()),
             '*' => new Token(TokenTypes.Operators.Asterisk, _ch.ToString()),
             '/' => new Token(TokenTypes.Operators.Slash, _ch.ToString()),
-            
+
             '!' => new Token(TokenTypes.Operators.Bang, _ch.ToString()),
             '<' => new Token(TokenTypes.Operators.Lt, _ch.ToString()),
             '>' => new Token(TokenTypes.Operators.Gt, _ch.ToString()),
@@ -129,4 +129,6 @@ public class Lexer
         _readPosition -= 1;
         _ch = _input[_position];
     }
+
+    private char Peek() => _readPosition >= _input.Length ? '\0' : _input[_readPosition];
 }
