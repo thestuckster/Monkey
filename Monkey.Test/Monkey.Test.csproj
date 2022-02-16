@@ -19,4 +19,10 @@
       <ProjectReference Include="..\Monkey\Monkey.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Programs\simple.monk">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
