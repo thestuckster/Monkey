@@ -3,7 +3,7 @@ namespace Monkey;
 public static class TokenTypes
 {
     public const string Illegal = "ILLEGAL";
-    public const string Eof = "EOF";
+    public const string Eof = "EOF"; //C# doesn't seem to read or care about an EOF character... leaving it here just in case its useful later
     
     private static Dictionary<string, string?> _keywords = new()
     {
