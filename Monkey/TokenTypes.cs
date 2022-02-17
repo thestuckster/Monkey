@@ -77,12 +77,12 @@ public static class TokenTypes
     {
         public const string Function = "FUNCTION";
         public const string Let = "LET";
-        public const string Return = "return";
+        public const string Return = "RETURN";
         
-        public const string If = "if";
-        public const string Else = "else";
+        public const string If = "IF";
+        public const string Else = "ELSE";
         
-        public const string True = "true";
-        public const string False = "false";
+        public const string True = "TRUE";
+        public const string False = "FALSE";
     }
 }
