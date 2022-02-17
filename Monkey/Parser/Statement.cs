@@ -1,9 +1,6 @@
 namespace Monkey.Parser;
 
-public class Statement : INode
+public interface Statement : INode
 {
-    public string TokenLiteral()
-    {
-        throw new NotImplementedException();
-    }
+    public void StatementNode();
 }

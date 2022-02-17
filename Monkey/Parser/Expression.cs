@@ -1,9 +1,6 @@
 namespace Monkey.Parser;
 
-public class Expression : INode
+public interface Expression : INode
 {
-    public string TokenLiteral()
-    {
-        throw new NotImplementedException();
-    }
+   public void ExpressionNode();
 }
