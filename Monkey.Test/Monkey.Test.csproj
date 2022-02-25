@@ -26,6 +26,9 @@
       <None Update="Programs\logicalOperations.monk">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Programs\letStatementTest.monk">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
