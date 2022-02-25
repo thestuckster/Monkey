@@ -16,7 +16,7 @@ public class Parser
         NextToken();
     }
 
-    public AProgram ParseAProgram()
+    public AProgram ParseProgram()
     {
         var program = new AProgram();
 
