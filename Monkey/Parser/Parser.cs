@@ -4,15 +4,18 @@ namespace Monkey.Parser;
 
 public class Parser
 {
+    public List<string> Errors { get; }
+
     private readonly Lexer _lexer;
-    
+
     private Token _currentToken;
     private Token _peekToken;
 
     public Parser(Lexer lexer)
     {
         _lexer = lexer;
-        
+        Errors = new List<string>();
+
         //read in two tokens so currentToken and peekToken are both set.
         NextToken();
         NextToken();
@@ -21,19 +24,19 @@ public class Parser
     public AProgram ParseProgram()
     {
         var program = new AProgram();
-        
+
         while (_lexer.HasNextToken())
         {
             var statement = ParseStatement();
             if (statement is not null)
                 program.Statements.Add(statement);
-            
+
             NextToken();
         }
-        
+
         return program;
     }
-    
+
     private void NextToken()
     {
         _currentToken = _peekToken;
@@ -51,7 +54,7 @@ public class Parser
 
     private Statement? ParseLetStatement()
     {
-        var letStatement = new LetStatement { Token = _currentToken };
+        var letStatement = new LetStatement {Token = _currentToken};
 
         if (!ExpectedPeek(TokenTypes.Literals.Ident)) return null;
 
@@ -62,18 +65,22 @@ public class Parser
         };
 
         if (!ExpectedPeek(TokenTypes.Operators.Assign)) return null;
-        
-        if(_currentToken.IsSame(TokenTypes.Delimiters.Semicolon)) NextToken(); //we're skipping expressions until we hit a ;
-        
+
+        if (_currentToken.IsSame(TokenTypes.Delimiters.Semicolon))
+            NextToken(); //we're skipping expressions until we hit a ;
+
         return letStatement;
     }
 
+    // used to enforce the correctness of the order of tokes by checking the type of the next token.
     private bool ExpectedPeek(string type)
     {
         if (!_peekToken.IsSame(type)) return false;
-        
+
         NextToken();
         return true;
     }
-    
+
+    private void PeekError(string expectedType) =>
+        Errors.Add($"Expected next token to be {expectedType} but got {_peekToken.Type} instead");
 }
