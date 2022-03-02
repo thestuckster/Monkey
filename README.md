@@ -43,7 +43,6 @@ Also there's no better way to make sure you understand languages than by transla
 
 **A**: `/shrug` entertainment and something to talk about 
 
-**Q**: Why doesn't your Lexer lex the EOF character?
+**Q**: Why not use bison, or yacc, or any other parser alternative to do the hard part for you?
 
-**A**: Turns out C# hates the EOF character and there is no actual literal character for it. Its not really needed as long as the actual language knows when to stop reading.
-
+**A**: That wouldn't be much of a learning experience now would it? But after writing even a basic parser I know understand why people rely on those tools
