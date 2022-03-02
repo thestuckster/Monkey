@@ -75,7 +75,17 @@ public class Parser
 
     private Statement? ParseReturnStatement()
     {
-        return null;
+        var statement = new ReturnStatement
+        {
+            Token = _currentToken
+        };
+        
+        NextToken();
+        
+        if (_currentToken.IsSame(TokenTypes.Delimiters.Semicolon))
+            NextToken(); //we're skipping expressions until we hit a ;
+
+        return statement;
     }
     
     // used to enforce the correctness of the order of tokes by checking the type of the next token.
