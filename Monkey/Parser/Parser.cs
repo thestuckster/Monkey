@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using Monkey.Extensions;
 
 namespace Monkey.Parser;
@@ -46,7 +45,7 @@ public class Parser
         return _currentToken.Type switch
         {
             TokenTypes.Keywords.Let => ParseLetStatement(),
-            _ => null,
+            _ => null
         };
     }
 
@@ -64,8 +63,8 @@ public class Parser
 
         if (!ExpectedPeek(TokenTypes.Operators.Assign)) return null;
         
-        if(!ExpectedPeek(TokenTypes.Delimiters.Semicolon)) NextToken(); //we're skipping expressions until we hit a ;
-
+        if(_currentToken.IsSame(TokenTypes.Delimiters.Semicolon)) NextToken(); //we're skipping expressions until we hit a ;
+        
         return letStatement;
     }
 

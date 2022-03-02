@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using FluentAssertions;
 using Monkey.Parser;
 using NUnit.Framework;
@@ -9,7 +8,6 @@ namespace Monkey.Test.Parser.Statements;
 
 public class LetStatementTest
 {
-
     [Test]
     public void ShouldParseLetStatements()
     {
@@ -31,15 +29,18 @@ public class LetStatementTest
 
         for (var i = 0; i < program.Statements.Count; i++)
         {
-            var statement = program.Statements[i];
-            statement.TokenLiteral().ToLower().Should().Be("let");
-
-            var letStatement = statement as LetStatement;
-            letStatement.Should().NotBeNull("Could not convert statement into a LetStatement!");
-
-            letStatement.Name.Value.Should().Be(expectedIds[i]);
-            letStatement.TokenLiteral().Should().Be(expectedIds[i]);
-
+            AssertLetStatements(program.Statements[i], expectedIds[i]);
         }
+    }
+
+    public void AssertLetStatements(Statement statement, string name)
+    {
+        statement.TokenLiteral().ToLower().Should().Be("let");
+
+        var letStatement = statement as LetStatement;
+        letStatement.Should().NotBeNull("Could not convert Statement into LetStatement");
+
+        letStatement.Name.Value.Should().Be(name);
+        letStatement.Name.TokenLiteral().Should().Be(name);
     }
 }
