@@ -34,6 +34,19 @@ public class LetStatementTest
         }
     }
 
+    [Test]
+    public void ShouldReportErrors()
+    {
+        var input = File.ReadAllText("Programs/letStatementError.monk");
+        input.Should().NotBeNullOrEmpty();
+
+        var lexer = new Monkey.Lexer(input);
+        var parser = new Monkey.Parser.Parser(lexer);
+
+        parser.ParseProgram();
+        ParserTestHelper.ParserShouldHaveErrors(parser, 1);
+    }
+    
     public void AssertLetStatements(Statement statement, string name)
     {
         statement.TokenLiteral().ToLower().Should().Be("let");
