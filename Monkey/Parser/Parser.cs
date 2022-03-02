@@ -75,12 +75,20 @@ public class Parser
     // used to enforce the correctness of the order of tokes by checking the type of the next token.
     private bool ExpectedPeek(string type)
     {
-        if (!_peekToken.IsSame(type)) return false;
+        if (!_peekToken.IsSame(type))
+        {
+            AddError(type);
+            return false;
+        }
 
         NextToken();
         return true;
     }
 
-    private void PeekError(string expectedType) =>
+    /// <summary>
+    /// used to add an error when the type of _peekToken doesn't match the expectation.
+    /// </summary>
+    /// <param name="expectedType">The token we expected _peekToken to be</param>
+    private void AddError(string expectedType) =>
         Errors.Add($"Expected next token to be {expectedType} but got {_peekToken.Type} instead");
 }

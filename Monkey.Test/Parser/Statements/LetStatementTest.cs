@@ -18,8 +18,9 @@ public class LetStatementTest
         var parser = new Monkey.Parser.Parser(lexer);
 
         var program = parser.ParseProgram();
+        ParserTestHelper.ParserShouldNotHaveErrors(parser);
+        
         program.Should().NotBeNull();
-
         program.Statements.Should().HaveCount(3);
 
         var expectedIds = new List<string>
