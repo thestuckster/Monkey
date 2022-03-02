@@ -54,7 +54,7 @@ public class LetStatementTest
         var letStatement = statement as LetStatement;
         letStatement.Should().NotBeNull("Could not convert Statement into LetStatement");
 
-        letStatement.Name.Value.Should().Be(name);
-        letStatement.Name.TokenLiteral().Should().Be(name);
+        letStatement?.Name.Value.Should().Be(name);
+        letStatement?.Name.TokenLiteral().Should().Be(name);
     }
 }
