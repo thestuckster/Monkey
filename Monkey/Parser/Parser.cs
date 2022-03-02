@@ -48,6 +48,7 @@ public class Parser
         return _currentToken.Type switch
         {
             TokenTypes.Keywords.Let => ParseLetStatement(),
+            TokenTypes.Keywords.Return => ParseReturnStatement(),
             _ => null
         };
     }
@@ -72,6 +73,11 @@ public class Parser
         return letStatement;
     }
 
+    private Statement? ParseReturnStatement()
+    {
+        return null;
+    }
+    
     // used to enforce the correctness of the order of tokes by checking the type of the next token.
     private bool ExpectedPeek(string type)
     {
