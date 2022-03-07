@@ -8,8 +8,8 @@ public class Parser
 
     private readonly Lexer _lexer;
 
-    private Token _currentToken;
-    private Token _peekToken;
+    private Token? _currentToken;
+    private Token? _peekToken;
 
     public Parser(Lexer lexer)
     {
