@@ -68,7 +68,13 @@ public class Lexer
         _readPosition += 1;
     }
     
-    private char Peek() => _readPosition >= _input.Length ? '\0' : _input[_readPosition];
+    private char Peek()
+    {
+        //this is stupid hacky and I hate it but we HAVE to get the last token out before we stop
+        var inputIndexes = _input.Length - 1;
+        if (_position == inputIndexes) return _ch;
+        return _readPosition > inputIndexes ? '\0' : _input[_readPosition];
+    }
 
     private Token DetermineComplexToken()
     {
