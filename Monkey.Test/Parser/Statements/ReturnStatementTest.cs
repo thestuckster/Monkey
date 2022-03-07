@@ -20,8 +20,6 @@ public class ReturnStatementTest
         ParserTestHelper.ParserShouldNotHaveErrors(parser);
         
         program.Should().NotBeNull();
-        
-        //TODO: ALL OR OUR RETURN STATEMENTS ARE OFF BY ONE!!! WTF
         program.Statements.Should().HaveCount(3);
 
         foreach (var statement in program.Statements)
