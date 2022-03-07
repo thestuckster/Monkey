@@ -68,7 +68,6 @@ public class Lexer
         _readPosition += 1;
     }
     
-    //Similar to ReadChar above but doesn't move us forward in the input.
     private char Peek() => _readPosition >= _input.Length ? '\0' : _input[_readPosition];
 
     private Token DetermineComplexToken()
@@ -142,7 +141,7 @@ public class Lexer
     private string ReadNumber()
     {
         var position = _position;
-        while (Char.IsDigit(_ch))
+        while (char.IsDigit(_ch))
             ReadChar();
 
         var slice = _input.Take(new Range(position, _position)).ToArray();
