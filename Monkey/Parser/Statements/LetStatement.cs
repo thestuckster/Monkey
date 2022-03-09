@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Monkey.Parser;
 
 public class LetStatement : IStatement
@@ -10,9 +12,10 @@ public class LetStatement : IStatement
 
     public override string ToString()
     {
-        var s =  $"{TokenLiteral()} {Name} = ";
-        if (Value is not null) s += $"{Value}"; //TODO: remove this when we can parse full expressions
-
-        return s;
+        var builder = new StringBuilder($"{TokenLiteral()} {Name} = ");
+        if (Value is not null) builder.Append($"{Value}"); //TODO: remove this when we can parse full expressions
+        builder.Append(";");
+        
+        return builder.ToString();
     }
 }

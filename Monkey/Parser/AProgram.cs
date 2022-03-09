@@ -11,7 +11,7 @@ public class AProgram : INode
     /// Every valid Monkey program is a series of statements. They are contained here. This is really just a slice of
     /// AST nodes that implement the Statement interface
     /// </summary>
-    public List<IStatement> Statements { get; }
+    public List<IStatement> Statements { get; init; }
 
     public AProgram() => Statements = new();
 
