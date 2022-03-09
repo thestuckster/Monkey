@@ -13,5 +13,6 @@ public class Identifier : IExpression
     public string Value { get; set; }
     
     public string TokenLiteral() => Token.Literal;
-    
+
+    public override string ToString() => Value;
 }
