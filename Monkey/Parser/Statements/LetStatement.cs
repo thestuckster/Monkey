@@ -7,4 +7,12 @@ public class LetStatement : IStatement
     public IExpression? Value { get; set; } 
 
     public string TokenLiteral() => Token.Literal;
+
+    public override string ToString()
+    {
+        var s =  $"{TokenLiteral()} {Name} = ";
+        if (Value is not null) s += $"{Value}"; //TODO: remove this when we can parse full expressions
+
+        return s;
+    }
 }

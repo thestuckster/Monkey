@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Monkey.Parser;
 
 /// <summary>
@@ -17,5 +19,13 @@ public class AProgram : INode
     {
         if (Statements.Count > 0) return Statements[0].TokenLiteral();
         return "";
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        Statements.ForEach(s => builder.Append(s));
+        
+        return builder.ToString();
     }
 }

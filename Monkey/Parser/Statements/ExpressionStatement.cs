@@ -11,4 +11,10 @@ public class ExpressionStatement : IStatement
 
     public string TokenLiteral() => Token?.Literal;
 
+    public override string ToString()
+    {
+        if (Expression is not null) return Expression.ToString(); //TODO: delete when we can parse full expressions
+
+        return String.Empty;
+    }
 }
