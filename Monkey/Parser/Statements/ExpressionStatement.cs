@@ -4,9 +4,7 @@ public class ExpressionStatement : IStatement
 {
     public Token? Token { get; set; }
     public IExpression? Expression { get; set; }
-    
-    public string TokenLiteral()
-    {
-        throw new NotImplementedException();
-    }
+
+    public string TokenLiteral() => Token?.Literal;
+
 }
