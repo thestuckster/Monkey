@@ -43,7 +43,7 @@ public class Parser
         _peekToken = _lexer.NextToken();
     }
 
-    private Statement? ParseStatement()
+    private IStatement? ParseStatement()
     {
         return _currentToken.Type switch
         {
@@ -53,7 +53,7 @@ public class Parser
         };
     }
 
-    private Statement? ParseLetStatement()
+    private IStatement? ParseLetStatement()
     {
         var letStatement = new LetStatement {Token = _currentToken};
 
@@ -73,7 +73,7 @@ public class Parser
         return letStatement;
     }
 
-    private Statement? ParseReturnStatement()
+    private IStatement? ParseReturnStatement()
     {
         var statement = new ReturnStatement
         {

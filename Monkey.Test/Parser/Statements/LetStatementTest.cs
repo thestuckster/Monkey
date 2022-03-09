@@ -47,7 +47,7 @@ public class LetStatementTest
         ParserTestHelper.ParserShouldHaveErrors(parser, 1);
     }
     
-    private void AssertLetStatements(Statement statement, string name)
+    private void AssertLetStatements(IStatement statement, string name)
     {
         statement.TokenLiteral().ToLower().Should().Be("let");
 
