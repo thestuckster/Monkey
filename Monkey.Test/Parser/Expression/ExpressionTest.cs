@@ -9,7 +9,7 @@ public class ExpressionTest
     [Test]
     public void ShouldParseIdentifierExpressions()
     {
-        var input = "foobar;";
+        var input = "foobar ;";
 
         var lexer = new Monkey.Lexer(input);
         var parser = new Monkey.Parser.Parser(lexer);
@@ -23,7 +23,11 @@ public class ExpressionTest
         var statement = statements[0];
         statement.Should().NotBeNull();
 
-        var identifierStatement = statement as Identifier;
+        var expressionStatement = statement as ExpressionStatement;
+        expressionStatement.Should().NotBeNull();
+        expressionStatement.Expression.Should().NotBeNull();
+
+        var identifierStatement = expressionStatement.Expression as Identifier;
         identifierStatement.Should().NotBeNull();
 
         identifierStatement.Value.Should().Be("foobar");

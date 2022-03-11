@@ -34,7 +34,7 @@ public class Parser
     {
         var program = new AProgram();
 
-        while (_lexer.HasNextToken())
+        while (_lexer.HasNextToken() || !_currentToken.IsSame(TokenTypes.Illegal))
         {
             var statement = ParseStatement();
             if (statement is not null)
