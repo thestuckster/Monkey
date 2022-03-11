@@ -10,7 +10,7 @@ public class Parser
     private Token? _peekToken;
     
     private readonly Lexer _lexer;
-    private readonly Dictionary<string, Func<IExpression>> _prefixParseFunctions;
+    private readonly Dictionary<string, Func<IExpression>?> _prefixParseFunctions;
     private readonly Dictionary<string, Func<IExpression, IExpression>> _infixParseFunctions;
 
     public Parser(Lexer lexer)
@@ -54,7 +54,7 @@ public class Parser
         {
             TokenTypes.Keywords.Let => ParseLetStatement(),
             TokenTypes.Keywords.Return => ParseReturnStatement(),
-            _ => null
+            _ => ParseExpressionStatement()
         };
     }
 
@@ -78,7 +78,7 @@ public class Parser
         return letStatement;
     }
 
-    private IStatement? ParseReturnStatement()
+    private IStatement ParseReturnStatement()
     {
         var statement = new ReturnStatement
         {
@@ -90,6 +90,20 @@ public class Parser
         if (_currentToken.IsSame(TokenTypes.Delimiters.Semicolon))
             NextToken(); //we're skipping expressions until we hit a ;
 
+        return statement;
+    }
+
+    private IStatement ParseExpressionStatement()
+    {
+        var statement = new ExpressionStatement
+        {
+            Token = _currentToken,
+            Expression = ParseExpression(Precedence.Lowest)
+        };
+
+        if(_peekToken.IsSame(TokenTypes.Delimiters.Semicolon))
+            NextToken();
+        
         return statement;
     }
     
@@ -112,4 +126,12 @@ public class Parser
     /// <param name="expectedType">The token we expected _peekToken to be</param>
     private void AddError(string expectedType) =>
         Errors.Add($"Expected next token to be {expectedType} but got {_peekToken.Type} instead");
+
+    private IExpression? ParseExpression(Precedence precedenceLevel)
+    {
+        var hasPrefixFunction = _prefixParseFunctions.TryGetValue(_currentToken.Type, out var prefixFunction);
+        if (!hasPrefixFunction) return null;
+
+        return prefixFunction();
+    }
 }
