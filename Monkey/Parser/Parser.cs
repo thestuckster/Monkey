@@ -20,7 +20,8 @@ public class Parser
 
         _prefixParseFunctions = new()
         {
-            {TokenTypes.Literals.Ident, ParseIdentifier}
+            {TokenTypes.Literals.Ident, ParseIdentifier},
+            {TokenTypes.Literals.Int, ParseIntegerLiteral}
         };
 
         _infixParseFunctions = new();
@@ -141,4 +142,22 @@ public class Parser
 
     private IExpression ParseIdentifier() =>
         new Identifier {Token = _currentToken, Value = _currentToken.Literal};
+
+    private IExpression ParseIntegerLiteral()
+    {
+        var expression = new IntegerLiteral
+        {
+            Token = _currentToken,
+        };
+        
+        var canCastToInt = Int32.TryParse(_currentToken.Literal, out var intValue);
+        if (!canCastToInt)
+        {
+            Errors.Add($"could not parse {_currentToken.Literal} as integer");
+            return null;
+        }
+
+        expression.Value = intValue;
+        return expression;
+    }
 }
