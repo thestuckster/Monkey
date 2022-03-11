@@ -18,7 +18,11 @@ public class Parser
         _lexer = lexer;
         Errors = new List<string>();
 
-        _prefixParseFunctions = new();
+        _prefixParseFunctions = new()
+        {
+            {TokenTypes.Literals.Ident, ParseIdentifier}
+        };
+
         _infixParseFunctions = new();
         
         //read in two tokens so currentToken and peekToken are both set.
@@ -134,4 +138,7 @@ public class Parser
 
         return prefixFunction();
     }
+
+    private IExpression ParseIdentifier() =>
+        new Identifier {Token = _currentToken, Value = _currentToken.Literal};
 }
