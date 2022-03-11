@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Monkey.Extensions;
 
 namespace Monkey.Parser;
@@ -11,11 +12,17 @@ public class Parser
     private Token? _currentToken;
     private Token? _peekToken;
 
+    private readonly Dictionary<string, Func<IExpression>> _prefixParseFunctions;
+    private readonly Dictionary<string, Func<IExpression, IExpression>> _infixParseFunctions;
+
     public Parser(Lexer lexer)
     {
         _lexer = lexer;
         Errors = new List<string>();
 
+        _prefixParseFunctions = new();
+        _infixParseFunctions = new();
+        
         //read in two tokens so currentToken and peekToken are both set.
         NextToken();
         NextToken();
