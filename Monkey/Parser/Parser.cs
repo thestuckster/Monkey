@@ -6,11 +6,10 @@ public class Parser
 {
     public List<string> Errors { get; }
 
-    private readonly Lexer _lexer;
-
     private Token? _currentToken;
     private Token? _peekToken;
-
+    
+    private readonly Lexer _lexer;
     private readonly Dictionary<string, Func<IExpression>> _prefixParseFunctions;
     private readonly Dictionary<string, Func<IExpression, IExpression>> _infixParseFunctions;
 
