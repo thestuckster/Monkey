@@ -2,7 +2,7 @@
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/home/stephen/.cache/JetBrains/Rider2021.3/resharper-host/temp/Rider/vAny/CoverageData/_Monkey.988014370/Snapshot/snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a5e0ca95_002Df2ae_002D4d71_002D880b_002Dc7430ed2b492/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldParseIntegerLiteral" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::C7112D10-EE73-4D01-9090-424C9AC491BF::net6.0::Monkey.Test.Parser.Expression.ExpressionTest.ShouldParseIntegerLiteral&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::C7112D10-EE73-4D01-9090-424C9AC491BF::net6.0::Monkey.Test.Parser.Expression.PrefixExpressionTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

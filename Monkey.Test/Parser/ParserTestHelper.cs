@@ -10,6 +10,7 @@ public static class ParserTestHelper
     {
         if (p.Errors.Any())
         {
+            Console.WriteLine("Errors: ");
             p.Errors.ForEach(Console.WriteLine);
         }
 

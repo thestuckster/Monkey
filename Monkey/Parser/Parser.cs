@@ -21,7 +21,9 @@ public class Parser
         _prefixParseFunctions = new()
         {
             {TokenTypes.Literals.Ident, ParseIdentifier},
-            {TokenTypes.Literals.Int, ParseIntegerLiteral}
+            {TokenTypes.Literals.Int, ParseIntegerLiteral},
+            {TokenTypes.Operators.Minus, ParsePrefixExpression},
+            {TokenTypes.Operators.Bang, ParsePrefixExpression},
         };
 
         _infixParseFunctions = new();
@@ -135,7 +137,11 @@ public class Parser
     private IExpression? ParseExpression(Precedence precedenceLevel)
     {
         var hasPrefixFunction = _prefixParseFunctions.TryGetValue(_currentToken.Type, out var prefixFunction);
-        if (!hasPrefixFunction) return null;
+        if (!hasPrefixFunction)
+        {
+            Errors.Add($"no prefix parse function for {_currentToken.Type} found");
+            return null;
+        }
 
         return prefixFunction();
     }
@@ -158,6 +164,21 @@ public class Parser
         }
 
         expression.Value = intValue;
+        return expression;
+    }
+
+    private IExpression ParsePrefixExpression()
+    {
+        var expression = new PrefixExpression
+        {
+            Token = _currentToken,
+            Operator = _currentToken.Literal
+        };
+        
+        NextToken();
+
+        expression.Right = ParseExpression(Precedence.Prefix);
+
         return expression;
     }
 }

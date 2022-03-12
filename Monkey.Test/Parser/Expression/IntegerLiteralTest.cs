@@ -26,10 +26,10 @@ public class IntegerLiteralTest
         expressionStatement.Should().NotBeNull();
         expressionStatement.Expression.Should().NotBeNull();
 
-        var identifierStatement = expressionStatement.Expression as IntegerLiteral;
-        identifierStatement.Should().NotBeNull();
+        var intLiteral = expressionStatement.Expression as IntegerLiteral;
+        intLiteral.Should().NotBeNull();
 
-        identifierStatement.Value.Should().Be(5);
-        identifierStatement.TokenLiteral().Should().Be("5");
+        intLiteral.Value.Should().Be(5);
+        intLiteral.TokenLiteral().Should().Be("5");
     }
 }

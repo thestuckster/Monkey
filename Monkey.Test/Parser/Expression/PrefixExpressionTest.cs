@@ -24,12 +24,16 @@ public class PrefixExpressionTest
         var expression = statement as ExpressionStatement;
         expression.Should().NotBeNull();
 
+        var intLiteral = expression.Expression as IntegerLiteral;
+        intLiteral.Should().NotBeNull();
+
+        intLiteral.Value.Should().Be(5);
+        intLiteral.TokenLiteral().Should().Be("5");
+        
         var prefix = expression.Expression as PrefixExpression;
         prefix.Should().NotBeNull();
 
         prefix.Operator.Should().Be(op);
-
-        AssertIntegerLiteral(expression.Expression, val);
     }
 
     private void AssertIntegerLiteral(IExpression expression, int value)
