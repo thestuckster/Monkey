@@ -11,7 +11,6 @@ public class PrefixExpression : IExpression
     
     public string TokenLiteral() => Token.Literal;
 
-
     public override string ToString()
     {
         var builder = new StringBuilder("(");
